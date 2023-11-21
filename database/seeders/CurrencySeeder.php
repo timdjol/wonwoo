@@ -26,7 +26,13 @@ class CurrencySeeder extends Seeder
                 'code' => 'USD',
                 'symbol' => '$',
                 'is_main' => 0,
-                'rate' => 88
+                'rate' => 89.59
+            ],
+            [
+                'code' => 'KRW',
+                'symbol' => '₩',
+                'is_main' => 0,
+                'rate' => 14.48
             ]
         ]);
     }

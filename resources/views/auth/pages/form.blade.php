@@ -33,11 +33,6 @@
                         @error('code')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
-                        <div class="form-group">
-                            <label for="">Код</label>
-                            <input type="text" name="code" value="{{ old('code', isset($page) ? $page->code :
-                             null) }}">
-                        </div>
                         @error('title')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -67,7 +62,7 @@
                             <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                             <div class="form-group">
-                                <label for="">Описание</label>
+                                <label for="">Описание EN</label>
                                 <textarea name="description_en" id="editor1" rows="3">{{ old('description_en', isset
                             ($page) ? $page->description_en : null) }}</textarea>
                             </div>

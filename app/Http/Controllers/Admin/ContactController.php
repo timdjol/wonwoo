@@ -16,7 +16,8 @@ class ContactController extends Controller
     {
         $contacts = Contact::get();
         $dollar = Currency::query()->where('id', 2)->get();
-        return view('auth.contacts.index', compact('contacts', 'dollar'));
+        $krw = Currency::query()->where('id', 3)->get();
+        return view('auth.contacts.index', compact('contacts', 'dollar', 'krw'));
     }
 
 
@@ -26,7 +27,8 @@ class ContactController extends Controller
     public function edit(Contact $contact)
     {
         $dollar = Currency::query()->where('id', 2)->get();
-        return view('auth.contacts.form', compact('contact', 'dollar'));
+        $krw = Currency::query()->where('id', 3)->get();
+        return view('auth.contacts.form', compact('contact', 'dollar', 'krw'));
     }
 
     /**
@@ -38,7 +40,8 @@ class ContactController extends Controller
 
         //dd($params);
         //dd($params['rate']);
-        Currency::query()->where('id', 2)->update(['rate' => $params['rate']]);
+        Currency::query()->where('id', 2)->update(['rate' => $params['dollar']]);
+        Currency::query()->where('id', 3)->update(['rate' => $params['krw']]);
         $contact->update($params);
         session()->flash('success', 'Контакты обновлены');
         return redirect()->route('contacts.index');

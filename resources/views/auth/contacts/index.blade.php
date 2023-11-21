@@ -58,6 +58,10 @@
                                 <td>{{ $dollar[0]->rate }}</td>
                             </tr>
                             <tr>
+                                <td>Курс ₩</td>
+                                <td>{{ $krw[0]->rate }}</td>
+                            </tr>
+                            <tr>
                                 <td colspan="2">
                                     <ul>
                                         <li><a class="btn view" href="{{ route('contacts.edit', $contact)

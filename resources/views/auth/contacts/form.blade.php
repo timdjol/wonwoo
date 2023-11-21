@@ -76,11 +76,11 @@
                         </div>
                             <div class="form-group">
                                 <label for="">Курс $</label>
-                                <input type="text" name="rate" value="{{ $dollar[0]->rate }}">
+                                <input type="text" name="dollar" value="{{ $dollar[0]->rate }}">
                             </div>
                             <div class="form-group">
                                 <label for="">Курс ВОН</label>
-                                <input type="text" name="rate" value="0.065">
+                                <input type="text" name="krw" value="{{ $krw[0]->rate }}">
                             </div>
                         @csrf
                         <button class="more">Сохранить</button>

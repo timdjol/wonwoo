@@ -26,8 +26,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-8">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/3Z9XOg-XPuI?si={{
-                        $page->description }}" title="YouTube video player" frameborder="0" allow="accelerometer;
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ strip_tags($page->description) }}" title="YouTube
+                        video player" frameborder="0" allow="accelerometer;
                         autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                     </div>
                     <style>
@@ -61,7 +61,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        Pleas auth
+                        <h3>Пожалуйста пройдите <a href="{{ route('login') }}">авторизацию</a></h3>
                     </div>
                 </div>
             </div>
