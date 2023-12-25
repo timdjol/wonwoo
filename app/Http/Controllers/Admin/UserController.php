@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\UserRequest;
+use App\Models\Country;
 use App\Models\User;
 
 class UserController
@@ -34,7 +35,8 @@ class UserController
 
     public function edit(User $user)
     {
-        return view('auth.users.form', compact('user'));
+        $countries = Country::get();
+        return view('auth.users.form', compact('user', 'countries'));
     }
 
     public function update(UserRequest $request, User $user)

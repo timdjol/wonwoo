@@ -68,7 +68,6 @@ class CategoryController extends Controller
      */
     public function update(CategoryRequest $request, Category $category)
     {
-        $request['code'] = Str::slug($request->title);
         $params = $request->all();
         unset($params['image']);
         if ($request->has('image')) {

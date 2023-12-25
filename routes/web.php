@@ -52,6 +52,8 @@ Route::middleware('set_locale')->group(function(){
                 Route::resource("sliders", "App\Http\Controllers\Admin\SliderController");
                 Route::resource("lives", "App\Http\Controllers\Admin\LiveController");
                 Route::resource("users", "App\Http\Controllers\Admin\UserController");
+                Route::resource("countries", "App\Http\Controllers\Admin\CountryController");
+                Route::resource("regions", "App\Http\Controllers\Admin\RegionController");
             });
         });
 
