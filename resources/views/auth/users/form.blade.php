@@ -50,7 +50,7 @@
                             </div>
                         @include('auth.layouts.error', ['fieldname' => 'address'])
                             <div class="form-group">
-                                <label for="">Адрес</label>
+                                <label for="">Страна</label>
                                 <input type="text" name="address" value="{{ old('description', isset($user) ?
                                 $user->address : null) }}">
                             </div>
