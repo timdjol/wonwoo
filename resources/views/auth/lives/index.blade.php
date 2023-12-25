@@ -27,7 +27,6 @@
                             <th>Телефон</th>
                             <th>Email</th>
                             <th>Адрес</th>
-                            <th>ID паспорт</th>
                             <th>Действия</th>
                         </tr>
                         @foreach($lives as $life)
@@ -38,7 +37,6 @@
                                 <td><a href="tel:{{ $life->user_phone }}">{{ $life->user_phone }}</a></td>
                                 <td><a href="mailto:{{ $life->user_email }}">{{ $life->user_email }}</a></td>
                                 <td>{{ $life->user_address }}</td>
-                                <td>{{ $life->user_passport_id }}</td>
                                 <td>
                                     <form action="{{ route('lives.destroy', $life) }}" method="post">
                                         <ul>

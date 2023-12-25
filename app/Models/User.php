@@ -22,11 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'phone',
-        'passport_inn',
         'passport_id',
-        'country',
-        'region_id',
-        'city_id',
         'address',
         'password',
     ];
