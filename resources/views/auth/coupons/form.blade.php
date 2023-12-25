@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('auth.layouts.master')
 
 @isset($coupon)
     @section('title', 'Редактировать купон')

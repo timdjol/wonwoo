@@ -1,9 +1,9 @@
-@extends('layouts.master')
+@extends('auth.layouts.master')
 
 @isset($coupon)
-    @section('title', 'Редактировать купон')
+    @section('title', 'Редактировать пользователя')
 @else
-    @section('title', 'Добавить купон')
+    @section('title', 'Добавить пользователя')
 @endisset
 
 @section('content')
@@ -15,73 +15,57 @@
                     @include('auth.layouts.sidebar')
                 </div>
                 <div class="col-md-9">
-                    @isset($coupon)
-                        <h1>Редактировать купон</h1>
+                    @isset($user)
+                        <h1>Редактировать пользователя</h1>
                     @else
-                        <h1>Добавить купон</h1>
+                        <h1>Добавить пользователя</h1>
                     @endisset
                     <form method="post"
-                          @isset($coupon)
-                              action="{{ route('coupons.update', $coupon) }}"
+                          @isset($user)
+                              action="{{ route('users.update', $user) }}"
                           @else
-                              action="{{ route('coupons.store') }}"
+                              action="{{ route('users.store') }}"
                             @endisset
                     >
                         @isset($coupon)
                             @method('PUT')
                         @endisset
-                        @include('auth.layouts.error', ['fieldname' => 'code'])
+                        @include('auth.layouts.error', ['fieldname' => 'name'])
                         <div class="form-group">
-                            <label for="">Код</label>
-                            <input type="text" name="code" value="{{ old('code', isset($coupon) ? $coupon->code :
+                            <label for="">ФИО</label>
+                            <input type="text" name="name" value="{{ old('name', isset($user) ? $user->name :
                              null) }}">
                         </div>
                         @include('auth.layouts.error', ['fieldname' => 'value'])
                         <div class="form-group">
-                            <label for="">Номинал</label>
-                            <input type="text" name="value" value="{{ old('value', isset($coupon) ? $coupon->value :
+                            <label for="">Номер телефона</label>
+                            <input type="text" name="phone" value="{{ old('value', isset($user) ? $user->phone :
                              null) }}">
                         </div>
-                        @include('auth.layouts.error', ['fieldname' => 'currency_id'])
-                        <div class="form-group">
-                            <label for="">Валюта</label>
-                            <select name="currency_id">
-                                <option value="">Без валюты</option>
-                                @foreach($currencies as $currency)
-                                    <option value="{{ $currency->id }}"
-                                            @isset($coupon)
-                                                @if($coupon->currency_id == $currency->id)
-                                                    selected
-                                            @endif
-                                            @endisset
-                                    >{{ $currency->code }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        @foreach([
-                            'type' => 'Абсолютное значение',
-                            'only_once' => 'Купон может быть использован только один раз',
-                        ] as $field => $title)
+                        @include('auth.layouts.error', ['fieldname' => 'email'])
                             <div class="form-group">
-                                <input type="checkbox" name="{{ $field }}"
-                                       @if (isset($coupon) && $coupon->$field === 1)
-                                           checked="checked"
-                                @endif
-                                <label for="">{{ $title }}</label>
+                                <label for="">Email</label>
+                                <input type="text" name="email" value="{{ old('value', isset($user) ? $user->email :
+                             null) }}">
                             </div>
-                        @endforeach
-                        @include('auth.layouts.error', ['fieldname' => 'expired_at'])
-                        <div class="form-group">
-                            <label for="">Использовать до:</label>
-                            <input type="date" name="expired_at" value="{{ old('description', isset($coupon) ?
-                            $coupon->changeDateForm() : null) }}">
-                        </div>
-                        @include('auth.layouts.error', ['fieldname' => 'description'])
-                        <div class="form-group">
-                            <label for="">Описание</label>
-                            <textarea name="description" rows="3">{{ old('description', isset($coupon) ?
-                            $coupon->description : null) }}</textarea>
-                        </div>
+                        @include('auth.layouts.error', ['fieldname' => 'address'])
+                            <div class="form-group">
+                                <label for="">Адрес</label>
+                                <input type="text" name="address" value="{{ old('description', isset($user) ?
+                                $user->address : null) }}">
+                            </div>
+                        @include('auth.layouts.error', ['fieldname' => 'passport_inn'])
+                            <div class="form-group">
+                                <label for="">ИНН</label>
+                                <input type="text" name="passport_inn" value="{{ old('passport_inn', isset($user) ?
+                                $user->passport_inn : null) }}">
+                            </div>
+                        @include('auth.layouts.error', ['fieldname' => 'passport_id'])
+                            <div class="form-group">
+                                <label for="">ID Паспорт</label>
+                                <input type="text" name="passport_id" value="{{ old('passport_id', isset($user) ?
+                                $user->passport_id : null) }}">
+                            </div>
                         @csrf
                         <button class="more">Отправить</button>
                             <a href="{{url()->previous()}}" class="btn delete cancel">Отмена</a>
