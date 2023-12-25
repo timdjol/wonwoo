@@ -1,6 +1,6 @@
 @extends('auth.layouts.master')
 
-@section('title', 'Заявки с прямого эфира')
+@section('title', 'Пользователи')
 
 @section('content')
 
@@ -17,31 +17,27 @@
                     @if(session()->has('warning'))
                         <p class="alert alert-warning">{{ session()->get('warning') }}</p>
                     @endif
-                        <h2>Заявки с прямого эфира</h2>
+                    <h2>Пользователи</h2>
                     <table class="table">
                         <tbody>
                         <tr>
-                            <th>Дата</th>
-                            <th>Сообщение</th>
                             <th>ФИО</th>
                             <th>Телефон</th>
                             <th>Email</th>
-                            <th>Адрес</th>
-                            <th>ID паспорт</th>
                             <th>Действия</th>
                         </tr>
-                        @foreach($lives as $life)
+                        @foreach($users as $user)
                             <tr>
-                                <td>{{ $life->created_at }}</td>
-                                <td>{{ $life->message }}</td>
-                                <td>{{ $life->user_name }}</td>
-                                <td><a href="tel:{{ $life->user_phone }}">{{ $life->user_phone }}</a></td>
-                                <td><a href="mailto:{{ $life->user_email }}">{{ $life->user_email }}</a></td>
-                                <td>{{ $life->user_address }}</td>
-                                <td>{{ $life->user_passport_id }}</td>
+                                <td>{{ $user->name }}</td>
+                                <td><a href="tel:{{ $user->phone }}">{{ $user->phone }}</a></td>
+                                <td><a href="mailto:{{ $user->email }}">{{ $user->email }}</a></td>
                                 <td>
-                                    <form action="{{ route('lives.destroy', $life) }}" method="post">
+                                    <form action="{{ route('users.destroy', $user) }}" method="post">
                                         <ul>
+                                            <li><a class="btn view" href="{{ route('users.show', $user)
+                                            }}">Открыть</a></li>
+                                            <li><a class="btn edit" href="{{ route('users.edit', $user)
+                                            }}">Редактировать</a></li>
                                             @csrf
                                             @method('DELETE')
                                             <button class="btn delete">Удалить</button>

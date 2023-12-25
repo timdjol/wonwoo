@@ -17,6 +17,10 @@
         <input type="text" name="phone" value="{{ old('phone', $user->phone) }}">
     </div>
     <div class="form-group">
+        <label for="">ИНН</label>
+        <input type="text" name="passport_inn" value="{{ old('passport_inn', $user->passport_inn) }}">
+    </div>
+    <div class="form-group">
         <label for="">ID паспорт</label>
         <input type="text" name="passport_id" value="{{ old('passport_id', $user->passport_id) }}">
     </div>
