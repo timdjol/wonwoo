@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\UserRequest;
 use App\Models\User;
-use Illuminate\Http\RedirectResponse;
 
 class UserController
 {
@@ -12,6 +11,20 @@ class UserController
     {
         $users = User::get();
         return view('auth.users.index', compact('users'));
+    }
+
+    public function create()
+    {
+        $users = User::get();
+        return view('auth.users.form', compact('users'));
+    }
+
+    public function store(UserRequest $request)
+    {
+        $params = $request->all();
+        User::create($params);
+        session()->flash('success', 'Пользователь ' . $request->code . ' добавлен');
+        return redirect()->route('users.index');
     }
 
     public function show(User $user)
@@ -24,16 +37,18 @@ class UserController
         return view('auth.users.form', compact('user'));
     }
 
-    /**
-     * @param UserRequest $request
-     * @param User $user
-     * @return RedirectResponse
-     */
     public function update(UserRequest $request, User $user)
     {
         $params = $request->all();
         $user->update($params);
         session()->flash('success', 'Пользователь ' . $user->name . ' обновлен');
+        return redirect()->route('users.index');
+    }
+
+    public function destroy(User $user)
+    {
+        $user->delete();
+        session()->flash('success', 'Пользователь ' . $user->name . ' удален');
         return redirect()->route('users.index');
     }
 }

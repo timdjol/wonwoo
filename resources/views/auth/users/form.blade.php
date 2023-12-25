@@ -1,6 +1,6 @@
 @extends('auth.layouts.master')
 
-@isset($coupon)
+@isset($user)
     @section('title', 'Редактировать пользователя')
 @else
     @section('title', 'Добавить пользователя')
@@ -27,7 +27,7 @@
                               action="{{ route('users.store') }}"
                             @endisset
                     >
-                        @isset($coupon)
+                        @isset($user)
                             @method('PUT')
                         @endisset
                         @include('auth.layouts.error', ['fieldname' => 'name'])
@@ -54,6 +54,12 @@
                                 <input type="text" name="address" value="{{ old('description', isset($user) ?
                                 $user->address : null) }}">
                             </div>
+                        @include('auth.layouts.error', ['fieldname' => 'address'])
+                            <div class="form-group">
+                                <label for="">Адрес</label>
+                                <input type="text" name="address" value="{{ old('description', isset($user) ?
+                                $user->address : null) }}">
+                            </div>
                         @include('auth.layouts.error', ['fieldname' => 'passport_inn'])
                             <div class="form-group">
                                 <label for="">ИНН</label>
@@ -65,6 +71,12 @@
                                 <label for="">ID Паспорт</label>
                                 <input type="text" name="passport_id" value="{{ old('passport_id', isset($user) ?
                                 $user->passport_id : null) }}">
+                            </div>
+                        @include('auth.layouts.error', ['fieldname' => 'password'])
+                            <div class="form-group">
+                                <label for="">Пароль</label>
+                                <input type="password" name="password" value="{{ old('password', isset($user) ?
+                                $user->password : null) }}">
                             </div>
                         @csrf
                         <button class="more">Отправить</button>

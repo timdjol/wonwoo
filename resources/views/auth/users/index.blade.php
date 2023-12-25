@@ -17,7 +17,14 @@
                     @if(session()->has('warning'))
                         <p class="alert alert-warning">{{ session()->get('warning') }}</p>
                     @endif
-                    <h2>Пользователи</h2>
+                    <div class="row">
+                        <div class="col-md-7">
+                            <h2>Пользователи</h2>
+                        </div>
+                        <div class="col-md-5">
+                            <a href="{{ route('users.create') }}" class="btn add">Добавить</a>
+                        </div>
+                    </div>
                     <table class="table">
                         <tbody>
                         <tr>
