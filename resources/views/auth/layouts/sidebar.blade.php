@@ -8,6 +8,7 @@
             <li @routeactive('orders.index')><a href="{{ route('orders.index')}}">Заказы</a></li>
             <li @routeactive('pages.index')><a href="{{ route('pages.index')}}">Страницы</a></li>
             <li @routeactive('lives.index')><a href="{{ route('lives.index')}}">Прямой эфир</a></li>
+            <li @routeactive('users.index')><a href="{{ route('users.index')}}">Пользователи</a></li>
             <li @routeactive('contacts.index')><a href="{{ route('contacts.index')}}">Контакты</a></li>
             <li @routeactive('profile.edit')><a href="{{ route('profile.edit') }}">Профиль</a></li>
         @else

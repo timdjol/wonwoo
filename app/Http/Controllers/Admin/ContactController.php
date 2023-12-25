@@ -37,9 +37,6 @@ class ContactController extends Controller
     public function update(ContactRequest $request, Contact $contact)
     {
         $params = $request->all();
-
-        //dd($params);
-        //dd($params['rate']);
         Currency::query()->where('id', 2)->update(['rate' => $params['dollar']]);
         Currency::query()->where('id', 3)->update(['rate' => $params['krw']]);
         $contact->update($params);
