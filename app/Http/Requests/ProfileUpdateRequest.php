@@ -18,11 +18,10 @@ class ProfileUpdateRequest extends FormRequest
         return [
             'name' => ['string', 'max:255'],
             'phone' => ['string', 'max:255'],
-            'passport_inn' => ['integer', 'max:255'],
-            'passport_id' => ['integer', 'max:255'],
+            'passport_inn' => ['string'],
+            'passport_id' => ['string'],
             'country' => ['string', 'max:255'],
-            'region_id' => ['integer', 'max:255'],
-            'city' => ['integer', 'max:255'],
+            'region' => ['string', 'max:255'],
             'address' => ['string', 'max:255'],
             'email' => ['email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
         ];

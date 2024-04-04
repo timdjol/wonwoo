@@ -4,13 +4,17 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Live;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class LiveController extends Controller
 {
     public function index()
     {
-        $lives = Live::get();
+        $lives = Live::join('users', 'lives.user_id', '=', 'users.id')
+            ->get(['lives.id', 'lives.created_at', 'lives.message', 'lives.link', 'users.name', 'users.phone', 'users.email',
+            'users.address', 'users.passport_id']);
+
         return view('auth.lives.index', compact('lives'));
     }
 
@@ -40,6 +44,4 @@ class LiveController extends Controller
         session()->flash('success', 'Заявка ' . $life->message . ' удалена');
         return redirect()->route('lives.index');
     }
-
-
 }

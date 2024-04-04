@@ -25,8 +25,7 @@ class User extends Authenticatable
         'passport_inn',
         'passport_id',
         'country',
-        'region_id',
-        'city_id',
+        'region',
         'address',
         'password',
     ];

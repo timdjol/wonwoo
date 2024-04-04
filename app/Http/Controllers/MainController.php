@@ -9,6 +9,7 @@ use App\Models\Currency;
 use App\Models\Image;
 use App\Models\Page;
 use App\Models\Product;
+use App\Models\Region;
 use App\Models\Review;
 use App\Models\Sku;
 use App\Models\Slider;
@@ -31,31 +32,36 @@ class MainController extends Controller
 
     public function catalog(ProductsFilterRequest $request)
     {
-        $productQuery = Product::query();
+        $paginate = 4;
+        $products = Product::paginate($paginate);
+        $product = Product::get();
 
-        $productsQuery = Product::with('category');
-
-        if ($request->filled('price_from')) {
-            $productsQuery->where('price', '>=', $request->price_from);
+        if(isset($request->price_from)){
+            $products = Product::where('price', '>=', $request->price_from)->paginate($paginate);
         }
 
-        if ($request->filled('price_to')) {
-            $productsQuery->where('price', '<=', $request->price_to);
-        }
-
-        foreach (['hit', 'new', 'recommend'] as $field) {
-            if ($request->has($field)) {
-                $productsQuery->$field();
+        if(isset($request->orderBy)){
+            if($request->orderBy == 'price-low-high'){
+                $products = Product::orderBy('price')->paginate($paginate);
+            }
+            if($request->orderBy == 'price-high-low'){
+                $products = Product::orderBy('price', 'desc')->paginate($paginate);
+            }
+            if($request->orderBy == 'name-a-z'){
+                $products = Product::orderBy('title', 'asc')->paginate($paginate);
+            }
+            if($request->orderBy == 'name-z-a'){
+                $products = Product::orderBy('title', 'desc')->paginate($paginate);
             }
         }
 
-        $products = $productQuery->paginate(20)->withPath("?".$request->getQueryString());
-
-        $product = Product::get();
-
+        if($request->ajax()){
+            return view('layouts.cart', compact('products'))->render();
+        }
 
         return view('catalog', compact('products', 'product'));
     }
+
 
     public function categories()
     {
@@ -117,14 +123,8 @@ class MainController extends Controller
         return redirect()->back();
     }
 
-    public function search()
-    {
-        $title = $_GET['search'];
-        $search = Product::query()
-            ->where('title', 'like', '%'.$title.'%')
-            ->orWhere('title_en', 'like', '%'.$title.'%')
-            ->get();
-        return view('search', compact('search'));
-    }
+
+
+
 
 }

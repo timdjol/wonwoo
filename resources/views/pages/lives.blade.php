@@ -66,11 +66,6 @@
                         <form action="{{ route('liveform') }}">
                             <input type="hidden" name="link" value="{{ $page->description }}">
                             <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-                            <input type="hidden" name="user_name" value="{{ Auth::user()->name }}">
-                            <input type="hidden" name="user_phone" value="{{ Auth::user()->phone }}">
-                            <input type="hidden" name="user_email" value="{{ Auth::user()->email }}">
-                            <input type="hidden" name="user_address" value="{{ Auth::user()->address }}">
-                            <input type="hidden" name="user_passport_id" value="{{ Auth::user()->passport_id }}">
                             <div class="form-group">
                                 <label for="message">@lang('main.message')</label>
                                 <textarea name="message" id="message" rows="6" required></textarea>

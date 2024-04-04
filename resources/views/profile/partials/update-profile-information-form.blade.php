@@ -7,31 +7,98 @@
 <form method="post" action="{{ route('profile.update') }}">
     @csrf
     @method('patch')
+    @error ('name')
+     <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
     <div class="form-group">
         <label for="">Ваше имя</label>
         <input type="text" name="name" value="{{ old('name', $user->name) }}">
     </div>
-
+    @error ('phone')
+    <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
     <div class="form-group">
         <label for="">Номер телефона</label>
         <input type="text" name="phone" value="{{ old('phone', $user->phone) }}">
     </div>
+    @error ('passport_inn')
+    <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
     <div class="form-group">
         <label for="">ИНН</label>
         <input type="text" name="passport_inn" value="{{ old('passport_inn', $user->passport_inn) }}">
     </div>
+    @error ('passport_id')
+    <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
     <div class="form-group">
         <label for="">ID паспорт</label>
         <input type="text" name="passport_id" value="{{ old('passport_id', $user->passport_id) }}">
     </div>
+    @error ('country')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
+    <div class="form-group">
+        <label for="">Страна</label>
+        <select id="country_id" name="country" class="form-control">
+            @foreach ($countries as $country)
+                <option value="{{$country->id}}"
+                        @isset($user->country)
+                            @if($user->country == $country->id)
+                                selected
+                           @endif
+                        @endisset
+                >{{$country->title}}</option>
+            @endforeach
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="">Регион</label>
+        <select name="region" id="region_id">
+            @isset($user->region)
+                <option value="{{ $user->region }}">{{ $user->region }}</option>
+            @endisset
+        </select>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#country_id').on('change', function () {
+                    let idCountry = this.value;
+                    $("#region_id").html('');
+                    $.ajax({
+                        url: "{{url('api/fetch-states')}}",
+                        type: "POST",
+                        data: {
+                            country_id: idCountry,
+                            _token: '{{csrf_token()}}'
+                        },
+                        dataType: 'json',
+                        success: function (result) {
+                            $('#region_id').html('<option value="">Выберите область</option>');
+                            $.each(result.states, function (key, value) {
+                                $("#region_id").append('<option value="' + value.title + '">' +
+                                    value
+                                        .title + '</option>');
+                            });
+                        }
+                    });
+                });
+            });
+        </script>
+    </div>
+    @error ('address')
+    <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
     <div class="form-group">
         <label for="">Адрес</label>
         <input type="text" name="address" value="{{ old('address', $user->address) }}">
     </div>
-
+    @error ('email')
+    <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
     <div class="form-group">
         <label for="">Email</label>
-        <input type="email" name="email" value="{{ old('name', $user->email) }}">
+        <input type="text" name="email" value="{{ old('name', $user->email) }}">
         @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
             <div>
                 <p class="text-sm mt-2 text-gray-800 dark:text-gray-200">

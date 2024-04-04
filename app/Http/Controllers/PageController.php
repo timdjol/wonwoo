@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
+use App\Models\Country;
 use App\Models\Live;
 use App\Models\Page;
+use App\Models\Region;
 use Goutte\Client;
 use Illuminate\Http\Request;
 
@@ -81,5 +83,10 @@ class PageController extends Controller
 
         return view('pages.scrapper', compact('titles'));
 
+    }
+    public function fetchState(Request $request)
+    {
+        $data['states'] = Region::where("country_id", $request->country_id)->get(["title", "id"]);
+        return response()->json($data);
     }
 }

@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\UserRequest;
 use App\Models\Country;
+use App\Models\Region;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class UserController
 {
@@ -17,7 +19,8 @@ class UserController
     public function create()
     {
         $users = User::get();
-        return view('auth.users.form', compact('users'));
+        $countries = Country::get();
+        return view('auth.users.form', compact('users', 'countries'));
     }
 
     public function store(UserRequest $request)

@@ -40,7 +40,7 @@
                         @include('auth.layouts.error', ['fieldname' => 'code'])
                         <div class="form-group">
                             <label for="">Код</label>
-                            <input type="text" name="code" value="{{ old('code', isset($country) ? $country->phone :
+                            <input type="text" name="code" value="{{ old('code', isset($country) ? $country->code :
                              null) }}">
                         </div>
                         @csrf

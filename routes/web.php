@@ -78,6 +78,9 @@ Route::middleware('set_locale')->group(function(){
     Route::get('/lives', [PageController::class, 'live'])->name('lives');
     Route::get('/liveform', [PageController::class, 'liveform'])->name('liveform');
     Route::get('/scrapper', [PageController::class, 'scrapper'])->name('scrapper');
+    Route::get('/sort_by', [MainController::class, 'sort_by'])->name('sort_by');
+
+    Route::post('/api/fetch-states', [PageController::class, 'fetchState']);
 
     Route::group([], function (){
         Route::post('/basket/add/{product?}', 'App\Http\Controllers\BasketController@basketAdd')->name('basket-add');

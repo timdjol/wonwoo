@@ -79,7 +79,7 @@
                                 <input type="text" name="dollar" value="{{ $dollar[0]->rate }}">
                             </div>
                             <div class="form-group">
-                                <label for="">Курс ВОН</label>
+                                <label for="">Курс ₩</label>
                                 <input type="text" name="krw" value="{{ $krw[0]->rate }}">
                             </div>
                         @csrf

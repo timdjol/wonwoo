@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\RegisterRequest;
+use App\Models\Country;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -20,7 +21,8 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('auth.register');
+        $countries = Country::get();
+        return view('auth.register', compact('countries'));
     }
 
     /**
@@ -34,12 +36,11 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'phone' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
-            'county' => ['required', 'string', 'max:255'],
-            'region_id' => ['required', 'integer', 'max:255'],
-            'city_id' => ['required', 'integer', 'max:255'],
+            'country_id' => ['required'],
+            'region' => ['required'],
             'address' => ['required', 'string', 'max:255'],
-            'passport_inn' => ['required', 'integer', 'max:255'],
-            'passport_id' => ['required', 'integer', 'max:255'],
+            'passport_inn' => ['required'],
+            'passport_id' => ['required'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
@@ -47,9 +48,8 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'phone' => $request->phone,
             'email' => $request->email,
-            'country' => $request->country,
-            'region_id' => $request->region_id,
-            'city_id' => $request->city_id,
+            'country_id' => $request->country_id,
+            'region' => $request->region,
             'address' => $request->address,
             'passport_inn' => $request->passport_inn,
             'passport_id' => $request->passport_id,

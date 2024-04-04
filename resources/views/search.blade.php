@@ -24,10 +24,10 @@
     <div class="products">
         <div class="container">
             <div class="row">
-                @if($search->map->skus->flatten()->isNotEmpty())
-                    @foreach($search->map->skus->flatten() as $sku)
+                @if($products->count() => 1)
+                    @foreach($products() as $product)
                         <div class="col-lg-3 col-md-4 col-6">
-                            @include('layouts.cart', compact('sku'))
+                            @include('layouts.cart')
                         </div>
                     @endforeach
                 @else
