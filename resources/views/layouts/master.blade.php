@@ -147,6 +147,7 @@
                             <li><a href="{{route('refund')}}">@lang('main.refund')</a></li>
                             <li><a href="{{route('policy')}}">@lang('main.policy')</a></li>
                             <li><a href="{{route('about')}}">@lang('main.about')</a></li>
+                            <li><a href="{{route('personal')}}">Договор оферты</a></li>
                         </ul>
                     </div>
                 </div>
@@ -164,6 +165,12 @@
                                 }}/img/instagram.svg" alt=""></a>
                                 </li>
                             </ul>
+                        </div>
+                        <div class="payment-item">
+                            <img src="https://kyrgyzmedia.kg/wp-content/themes/kyrgyzmedia/img/fpart2.png" alt="">
+                            <img src="https://kyrgyzmedia.kg/wp-content/themes/kyrgyzmedia/img/fpart3.png" alt="">
+                            <img src="https://kyrgyzmedia.kg/wp-content/themes/kyrgyzmedia/img/fpart4.png" alt="">
+                            <img src="https://kyrgyzmedia.kg/wp-content/themes/kyrgyzmedia/img/fpart5.png" alt="">
                         </div>
                     </div>
                 </div>

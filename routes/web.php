@@ -74,6 +74,7 @@ Route::middleware('set_locale')->group(function(){
     Route::get('/about', [PageController::class, 'about'])->name('about');
     Route::get('/contactspage', [PageController::class, 'contacts'])->name('contactspage');
     Route::get('/policy', [PageController::class, 'policy'])->name('policy');
+    Route::get('/personal', [PageController::class, 'personal_data'])->name('personal');
     Route::get('/search', [MainController::class, 'search'])->name('search');
     Route::get('/lives', [PageController::class, 'live'])->name('lives');
     Route::get('/liveform', [PageController::class, 'liveform'])->name('liveform');

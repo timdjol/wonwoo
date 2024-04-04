@@ -41,7 +41,7 @@
                                         <div class="descr">{{ $product->title }}</div>
                                     </a>
                                 </td>
-                                <td>{{ $product->count }}</td>
+                                <td>{{ $product->pivot->count }}</td>
                                 <td>{{ $product->pivot->price }} {{ $order->currency->symbol }}</td>
                                 <td>{{ $product->pivot->price * $product->pivot->count }} {{
                                 $order->currency->symbol }}</td>

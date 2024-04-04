@@ -24,20 +24,13 @@
     <div class="products">
         <div class="container">
             <div class="row">
-                @if($products->count() => 1)
-                    @foreach($products() as $product)
-                        <div class="col-lg-3 col-md-4 col-6">
-                            @include('layouts.cart')
-                        </div>
+                @if($search)
+                    @foreach($search as $product)
+                        @include('layouts.card')
                     @endforeach
                 @else
                     <h2>Продукции не найдены</h2>
                 @endif
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-
-                </div>
             </div>
         </div>
     </div>

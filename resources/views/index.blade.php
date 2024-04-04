@@ -21,17 +21,18 @@
                     <div class="slider">
                         <div class="owl-carousel owl-slider">
                             @foreach($sliders as $slider)
-                                <div class="slider-item" style="background-image: url({{ Storage::url($slider->image) }})">
-{{--                                    <div class="container">--}}
-{{--                                        <div class="text-wrap">--}}
-{{--                                            <h2>{{ $slider->__('title') }}</h2>--}}
-{{--                                            @if($slider->link)--}}
-{{--                                                <div class="btn-wrap">--}}
-{{--                                                    <a href="{{ $slider->link }}" class="more">@lang('main.readmore')</a>--}}
-{{--                                                </div>--}}
-{{--                                            @endif--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
+                                <div class="slider-item"
+                                     style="background-image: url({{ Storage::url($slider->image) }})">
+                                    {{--                                    <div class="container">--}}
+                                    {{--                                        <div class="text-wrap">--}}
+                                    {{--                                            <h2>{{ $slider->__('title') }}</h2>--}}
+                                    {{--                                            @if($slider->link)--}}
+                                    {{--                                                <div class="btn-wrap">--}}
+                                    {{--                                                    <a href="{{ $slider->link }}" class="more">@lang('main.readmore')</a>--}}
+                                    {{--                                                </div>--}}
+                                    {{--                                            @endif--}}
+                                    {{--                                        </div>--}}
+                                    {{--                                    </div>--}}
                                 </div>
                             @endforeach
                         </div>
@@ -90,7 +91,7 @@
                     <h2>@lang('main.news')</h2>
                     <div class="owl-carousel owl-products">
                         @foreach($news as $product)
-                            @include('layouts.cart', compact('product'))
+                            @include('layouts.homecard', compact('product'))
                         @endforeach
                     </div>
                 </div>
@@ -105,7 +106,7 @@
                     <h2>Аксессуары</h2>
                     <div class="owl-carousel owl-products">
                         @foreach($access as $product)
-                            @include('layouts.cart', compact('product'))
+                            @include('layouts.homecard', compact('product'))
                         @endforeach
                     </div>
                 </div>
@@ -120,7 +121,7 @@
                     <h2>Электроника</h2>
                     <div class="owl-carousel owl-products">
                         @foreach($elec as $product)
-                            @include('layouts.cart', compact('product'))
+                            @include('layouts.homecard', compact('product'))
                         @endforeach
                     </div>
                 </div>

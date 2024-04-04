@@ -32,7 +32,13 @@
                             <td>{{ $product->param * $product->countInOrder }} kg</td>
                             <td>
                                 <form action="{{ route('basket-remove', $product) }}" method="post">
-                                    <button type="submit" class="btn btn-danger">-</button>
+                                    <button type="submit" class="btn btn-danger"
+                                    @php
+                                    if($product->countInOrder <= 1){
+                                        echo 'disabled';
+                                    }
+                                    @endphp
+                                    >-</button>
                                     @csrf
                                 </form>
                                 <span class="badge">{{ $product->countInOrder }}</span>

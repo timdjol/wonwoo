@@ -3,20 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductsFilterRequest;
-use App\Http\Requests\SubscriptionRequest;
 use App\Models\Category;
 use App\Models\Currency;
 use App\Models\Image;
-use App\Models\Page;
 use App\Models\Product;
-use App\Models\Region;
-use App\Models\Review;
-use App\Models\Sku;
 use App\Models\Slider;
-use App\Models\Subscription;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\DB;
 
 class MainController extends Controller
 {
@@ -32,7 +24,7 @@ class MainController extends Controller
 
     public function catalog(ProductsFilterRequest $request)
     {
-        $paginate = 4;
+        $paginate = 30;
         $products = Product::paginate($paginate);
         $product = Product::get();
 
@@ -84,6 +76,15 @@ class MainController extends Controller
         return view('product', compact('product', 'images'));
     }
 
+    public function search()
+    {
+        $title = $_GET['search'];
+        $search = Product::query()
+            ->where('title', 'like', '%'.$title.'%')
+            ->get();
+        return view('search', compact('search'));
+    }
+
 //    public function product($categoryCode, $productCode)
 //    {
 //        $product = Product::first();
@@ -102,9 +103,6 @@ class MainController extends Controller
 //        return view('product', compact('product', 'images', 'category'));
 //    }
 
-
-
-
     public function changeLocale($locale)
     {
         $availableLocales = ['ru', 'en'];
@@ -122,9 +120,5 @@ class MainController extends Controller
         session(['currency' => $currency->code]);
         return redirect()->back();
     }
-
-
-
-
 
 }

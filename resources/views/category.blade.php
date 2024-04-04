@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <h1>{{$category->__('title')}}</h1>
-{{--                    <p>{!! $category->__('description') !!}</p>--}}
+                    {{--                    <p>{!! $category->__('description') !!}</p>--}}
                     <div class="breadcrumbs">
                         <ul>
                             <li><a href="{{ route('index') }}">@lang('main.home')</a></li>
@@ -30,9 +30,7 @@
             <div class="row">
                 @if($category->products->isNotEmpty())
                     @foreach($category->products as $product)
-                        <div class="col-lg-3 col-md-4 col-6">
-                            @include('layouts.cart', compact('product'))
-                        </div>
+                        @include('layouts.card', compact('product'))
                     @endforeach
                 @else
                     <h2>@lang('main.not_found')</h2>

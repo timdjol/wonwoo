@@ -52,11 +52,19 @@ class PageController extends Controller
         return view('pages.policy', compact('page'));
     }
 
+    public function personal_data()
+    {
+        $page = Page::get()[7];
+        return view('pages.personal', compact('page'));
+    }
+
     public function live()
     {
         $page = Page::get()[6];
         return view('pages.lives', compact('page'));
     }
+
+
 
     public function liveform(Request $request)
     {

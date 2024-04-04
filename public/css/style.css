@@ -15,6 +15,7 @@ table td, table th{
     text-align: center;
     font-size: 12px;
     border: 1px solid;
+    opacity: 1;
 }
 .alert-success {
     color: #155724;
@@ -762,6 +763,18 @@ form .form-group .agree{
 }
 .order .delivery{
     margin-top: 30px;
+}
+:disabled {
+    opacity: .6;
+}
+footer .payment-item{
+    margin-top: 30px;
+}
+footer .payment-item img{
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    max-width: 120px;
 }
 @media(max-width: 991px){
 
