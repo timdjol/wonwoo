@@ -9,14 +9,15 @@
                 <h1>@lang('basket.checkout')</h1>
                 <h5>@lang('basket.total_order'): {{ $order->getFullSum() }} {{
                 $currencySymbol }}</h5>
-                <form action="{{ route('order-confirm') }}" method="post">
+                <form action="{{ route('paybox') }}" method="get">
+                    <input type="hidden" value="{{ $order->getFullSum() }}" name="price">
                     @error ('name')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                     <div class="form-group">
                         <label for="">@lang('basket.your_name')</label>
                         <input type="text" name="name" value="{{ old('name', isset($order) ? $order->name :
-                             null) }}">
+                             null) }}" required>
                     </div>
                     @error ('phone')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -24,7 +25,7 @@
                     <div class="form-group">
                         <label for="">@lang('basket.phone')</label>
                         <input type="text" id="phone" name="phone" value="{{ old('phone', isset($order) ?
-                        $order->phone : null) }}">
+                        $order->phone : null) }}" required>
                         <div id="output" class="error"></div>
                     </div>
                     @guest
@@ -86,10 +87,10 @@
                             </div>
                         </div>
                     </div>
-
                     @csrf
                     <button id="send" class="more">@lang('basket.confirm')</button>
                 </form>
+
             </div>
         </div>
     </div>

@@ -78,6 +78,8 @@ Route::middleware('set_locale')->group(function(){
     Route::get('/search', [MainController::class, 'search'])->name('search');
     Route::get('/lives', [PageController::class, 'live'])->name('lives');
     Route::get('/liveform', [PageController::class, 'liveform'])->name('liveform');
+    Route::get('/success', [PageController::class, 'success_page'])->name('success_page');
+    Route::get('/failure', [PageController::class, 'failure_page'])->name('failure_page');
     Route::get('/scrapper', [PageController::class, 'scrapper'])->name('scrapper');
     Route::get('/sort_by', [MainController::class, 'sort_by'])->name('sort_by');
 
@@ -89,6 +91,7 @@ Route::middleware('set_locale')->group(function(){
         Route::group(['middleware' => 'basket_not_empty'], function (){
             Route::get('/basket', [BasketController::class, 'basket'])->name('basket');
             Route::get('/order', [BasketController::class, 'order'])->name('order');
+            Route::get('/paybox', [MainController::class, 'paybox'])->name('paybox');
             Route::post('/order/confirm', [BasketController::class, 'orderConfirm'])->name('order-confirm');
             Route::post('/basket/remove/{product}', 'App\Http\Controllers\BasketController@basketRemove')->name('basket-remove');
             Route::post('/basket/coupon', 'App\Http\Controllers\BasketController@setCoupon')->name('set-coupon');

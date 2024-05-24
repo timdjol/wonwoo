@@ -75,6 +75,14 @@ class PageController extends Controller
         return redirect()->route('lives');
     }
 
+    public function success_page(){
+        return view('pages.success');
+    }
+
+    public function failure_page(){
+        return view('pages.failure');
+    }
+
     public function scrapper ()
     {
 

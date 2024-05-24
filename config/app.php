@@ -170,6 +170,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\ViewServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
+        App\Providers\ParserServiceProvider::class,
 
     ])->toArray(),
 
@@ -186,6 +187,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
+        'Parser' => App\Facades\ParserService::class
     ])->toArray(),
 
 ];

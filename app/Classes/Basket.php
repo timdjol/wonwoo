@@ -6,7 +6,6 @@ use App\Mail\OrderCreated;
 use App\Models\Coupon;
 use App\Models\Order;
 use App\Models\Product;
-use App\Models\Sku;
 use App\Services\CurrencyConversion;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
