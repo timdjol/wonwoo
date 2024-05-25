@@ -80,6 +80,8 @@ Route::middleware('set_locale')->group(function(){
     Route::get('/liveform', [PageController::class, 'liveform'])->name('liveform');
     Route::get('/success', [PageController::class, 'success_page'])->name('success_page');
     Route::get('/failure', [PageController::class, 'failure_page'])->name('failure_page');
+    Route::get('/check', [PageController::class, 'check_page'])->name('check_page');
+    Route::get('/state', [PageController::class, 'state_page'])->name('state_page');
     Route::get('/scrapper', [PageController::class, 'scrapper'])->name('scrapper');
     Route::get('/sort_by', [MainController::class, 'sort_by'])->name('sort_by');
 

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
-use App\Models\Country;
 use App\Models\Live;
 use App\Models\Page;
 use App\Models\Region;
@@ -75,17 +74,28 @@ class PageController extends Controller
         return redirect()->route('lives');
     }
 
-    public function success_page(){
+    public function success_page()
+    {
         return view('pages.success');
     }
 
-    public function failure_page(){
+    public function failure_page()
+    {
         return view('pages.failure');
+    }
+
+    public function check_page()
+    {
+        return view('pages.check');
+    }
+
+    public function state_page()
+    {
+        return view('pages.state');
     }
 
     public function scrapper ()
     {
-
         $client = new Client();
         $url = 'https://aliexpress.ru/category/24/mobile-phones-accessories.html?spm=a2g2w.productlist.categorylist.1.17a94aa6pEId4R&source=nav_category';
         $page = $client->request('GET', $url);
